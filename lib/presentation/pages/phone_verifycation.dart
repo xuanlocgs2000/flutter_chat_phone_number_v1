@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/phone_auth/phone_auth_cubit.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/phone_auth/phone_auth_cubit.dart';
 import 'package:flutter_chat_ffb/presentation/pages/set_initial_profile.dart';
 // import 'package:flutter_chat_ffb/presentation/bloc/phone_auth/phone_auth_cubit.dart';
 // import 'package:flutter_chat_ffb/presentation/pages/set_initial_profile_page.dart';
@@ -55,7 +55,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
               height: 30,
             ),
             Text(
-              "We will send and SMS message (carrier charges may apply) to verify your phone number. Enter your country code and phone number:",
+              "SMS sẽ được gửi hoặc dùng phương thức xác minh capcha",
               style: TextStyle(
                 fontSize: 16,
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/phone_auth/phone_auth_cubit.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/phone_auth/phone_auth_cubit.dart';
 import 'package:flutter_chat_ffb/presentation/screens/home_screen.dart';
 import 'package:flutter_chat_ffb/presentation/widgets/theme/style.dart';
 

@@ -27,20 +27,6 @@ class CustomTabBar extends StatelessWidget {
               borderColor: index == 0 ? textIconColor : Colors.transparent,
             ),
           ),
-          // Expanded(
-          //   child: CustomTabBarButton(
-          //     text: "STATUS",
-          //     textColor: index == 2 ? textIconColor : textIconColorGray,
-          //     borderColor: index == 2 ? textIconColor : Colors.transparent,
-          //   ),
-          // ),
-          Expanded(
-            child: CustomTabBarButton(
-              text: "CALLS",
-              textColor: index == 1 ? textIconColor : textIconColorGray,
-              borderColor: index == 1 ? textIconColor : Colors.transparent,
-            ),
-          ),
         ],
       ),
     );

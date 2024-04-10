@@ -25,10 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController _pageViewController = PageController(initialPage: 1);
   List<Widget> get _pages => [
         ChatPage(
-            // userInfo: widget.userInfo,
-            ),
+          userInfo: widget.userInfo,
+        ),
         // StatusPage(),
-        CallsPage()
+        // CallsPage()
       ];
   Widget _buildSearch() {
     return Container(

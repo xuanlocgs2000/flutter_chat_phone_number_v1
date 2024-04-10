@@ -21,24 +21,24 @@
 //   final AddToMyChatUseCase addToMyChatUseCase;
 
 //   CommunicationCubit({
-//     this.getTextMessagesUseCase,
-//     this.addToMyChatUseCase,
-//     this.getOneToOneSingleUserChatChannelUseCase,
-//     this.sendTextMessageUseCase,
+//     required this.getTextMessagesUseCase,
+//     required this.addToMyChatUseCase,
+//     required this.getOneToOneSingleUserChatChannelUseCase,
+//     required this.sendTextMessageUseCase,
 //   }) : super(CommunicationInitial());
 
 //   Future<void> sendTextMessage({
-//     String senderName,
-//     String senderId,
-//     String recipientId,
-//     String recipientName,
-//     String message,
-//     String recipientPhoneNumber,
-//     String senderPhoneNumber,
+//     String? senderName,
+//     String? senderId,
+//     String? recipientId,
+//     String? recipientName,
+//     String? message,
+//     String? recipientPhoneNumber,
+//     String? senderPhoneNumber,
 //   }) async {
 //     try {
 //       final channelId = await getOneToOneSingleUserChatChannelUseCase.call(
-//           senderId, recipientId);
+//           senderId!, recipientId!);
 //       await sendTextMessageUseCase.sendTextMessage(
 //         TextMessageEntity(
 //           recipientName: recipientName,

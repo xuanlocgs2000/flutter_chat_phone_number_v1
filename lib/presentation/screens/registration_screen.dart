@@ -3,8 +3,10 @@ import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/auth/auth_cubit.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/phone_auth/phone_auth_cubit.dart';
+import 'package:flutter_chat_ffb/data/model/user_model.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/auth/auth_cubit.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/phone_auth/phone_auth_cubit.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/user/user_cubit.dart';
 import 'package:flutter_chat_ffb/presentation/pages/set_initial_profile.dart';
 
 import 'package:flutter_chat_ffb/presentation/screens/home_screen.dart';
@@ -60,8 +62,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           return BlocBuilder<AuthCubit, AuthState>(
             builder: (context, authState) {
               if (authState is Authenticated) {
-                return HomeScreen(
-                  uid: authState.uid!,
+                return BlocBuilder<UserCubit, UserState>(
+                  builder: (context, userState) {
+                    if (userState is UserLoaded) {
+                      final currentUserInfo = userState.users.firstWhere(
+                          (user) => user.uid == authState.uid,
+                          orElse: () => UserModel());
+                      return HomeScreen(
+                        userInfo: currentUserInfo,
+                      );
+                    }
+                    return Container();
+                  },
                 );
               }
               return Container();

@@ -1,32 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_chat_ffb/domain/entities/contact_entity.dart';
 import 'package:flutter_chat_ffb/domain/entities/user_entity.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/get_device_number/get_device_numbers_cubit.dart';
-import 'package:flutter_chat_ffb/presentation/bloc/user/user_cubit.dart';
-// import 'package:flutter_chat_ffb/presentation/pages/sub_pages/single_communication_page.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/get_device_number/get_device_numbers_cubit.dart';
+import 'package:flutter_chat_ffb/presentation/cubit/user/user_cubit.dart';
 import 'package:flutter_chat_ffb/presentation/widgets/theme/style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SelectContactPage extends StatefulWidget {
   final UserEntity userInfo;
 
-  const SelectContactPage({required Key key, required this.userInfo})
-      : super(key: key);
+  const SelectContactPage({
+    Key? key,
+    required this.userInfo,
+  }) : super(key: key);
 
   @override
-  _SelectContactPageState createState() => _SelectContactPageState();
+  State<SelectContactPage> createState() => _SelectContactPageState();
 }
 
 class _SelectContactPageState extends State<SelectContactPage> {
-  @override
-  void initState() {
-    BlocProvider.of<GetDeviceNumbersCubit>(context).getDeviceNumbers();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetDeviceNumbersCubit, GetDeviceNumbersState>(
@@ -54,6 +47,7 @@ class _SelectContactPageState extends State<SelectContactPage> {
                     },
                   );
                 });
+                debugPrint("Contacts: $contacts");
                 return Scaffold(
                   appBar: AppBar(
                     title: Column(
@@ -71,8 +65,9 @@ class _SelectContactPageState extends State<SelectContactPage> {
                       Icon(Icons.more_vert),
                     ],
                   ),
-                  body: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  body: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Column(
                       children: [
                         _newGroupButtonWidget(),
@@ -162,10 +157,6 @@ class _SelectContactPageState extends State<SelectContactPage> {
               ),
             ],
           ),
-          Icon(
-            FontAwesomeIcons.qrcode,
-            color: greenColor,
-          )
         ],
       ),
     );
@@ -174,52 +165,52 @@ class _SelectContactPageState extends State<SelectContactPage> {
   Widget _listContact(List<ContactEntity> contacts) {
     return Expanded(
       child: ListView.builder(
-          itemCount: contacts.length,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.only(bottom: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 55,
-                        width: 55,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
-                        child: Image.asset('assets/profile_default.png'),
+        itemCount: contacts.length,
+        itemBuilder: (ctx, index) {
+          return Container(
+            margin: EdgeInsets.only(bottom: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 55,
+                      width: 55,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                      child: Image.asset('assets/profile_default.png'),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${contacts[index].label}",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Hello.",
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${contacts[index].label}",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Heeloo chat app loc",
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            );
-          }),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

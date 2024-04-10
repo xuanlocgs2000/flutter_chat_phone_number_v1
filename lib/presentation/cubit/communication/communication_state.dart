@@ -8,18 +8,21 @@
 //   @override
 //   List<Object> get props => [];
 // }
+
 // class CommunicationLoaded extends CommunicationState {
 //   final List<TextMessageEntity> messages;
 
-//   CommunicationLoaded({this.messages});
+//   CommunicationLoaded({required this.messages});
 
 //   @override
 //   List<Object> get props => [messages];
 // }
+
 // class CommunicationFailure extends CommunicationState {
 //   @override
 //   List<Object> get props => [];
 // }
+
 // class CommunicationLoading extends CommunicationState {
 //   @override
 //   List<Object> get props => [];
